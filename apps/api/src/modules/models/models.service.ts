@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { ModelsRepository } from './models.repository'
 import { DomainException, DomainErrorCodes } from '../../common/exceptions/domain.exception'
 import type { IModel, CreateModelDTO } from '@handshake/types'
-import { ListModelsQueryDto } from './dto'
+import { ListModelsQueryDto } from './requests/list-models-query-dto'
 
 @Injectable()
 export class ModelsService {
@@ -46,7 +46,7 @@ export class ModelsService {
     })
   }
 
-  //a prototype
+  // prototype
   calculateProvenanceScore(model: IModel): number {
     let score = 0
 

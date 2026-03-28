@@ -18,7 +18,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@handshake/types": ["../../packages/types/src"],
+      "@handshake/types": ["../../packages/types/dist/index"],
       "@handshake/config": ["../../packages/config/src"]
     }
   },
