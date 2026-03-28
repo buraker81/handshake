@@ -1,4 +1,4 @@
-import { Relationship, Source } from "../enums";
+import { Framework, License, Quantization, Relationship, Source, Task } from "../enums";
 
 export interface IBlockchainRecord {
     txHash?: string;
@@ -48,16 +48,15 @@ export interface IModel {
     name: string,
     description?: string;
     version: string;     // '1.0.0', '1.0.1', etc.
-    task: string;     // 'text-generation', 'image-classification', etc.
-    framework: string;     // 'tensorflow', 'pytorch', 'jax', etc.
-    license: string;     // 'apache-2.0', 'mit', 'custom'
+    task: Task;     // 'text-generation', 'image-classification', etc.
+    framework: Framework;     // 'tensorflow', 'pytorch', 'jax', etc.
+    license: License;     // 'apache-2.0', 'mit', 'custom'
     size?: number;
-
 
     modelType?: string;     // 'Llama-3', 'Mistral', 'ViT-L'
     parameters?: string;     // '7B', '13B', '70B'
     contextLength?: number;     // 4096, 8192, 128000
-    quantization?: string;      //'int8', 'float32', ?'int4', 'gptq', 'awq'
+    quantization?: Quantization;      //'int8', 'float32', ?'int4', 'gptq', 'awq'
 
     // Provenance
     ownerAddress: string;

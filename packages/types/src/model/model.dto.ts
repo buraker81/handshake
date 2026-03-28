@@ -1,8 +1,14 @@
 import { Framework, License, Quantization, Task } from "../enums"
 import { IEvaluation, IModel, IParentRef, ITrainingData } from "./model.types"
 
+export interface QueryModelParamsDTO {
+    task: Task
+    framework: Framework;
+    //    
+}
+
 export interface CreateModelDTO {
-    name: string
+    name: string            
     description: string
     version: string
     task: Task

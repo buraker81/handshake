@@ -13,10 +13,10 @@ export type ModelDocument = ModelRecord & Document
 export class ModelRecord {
   // Identity
   @Prop({ required: true, index: true })
-  name: string
+  name: string;
 
   @Prop()
-  description?: string
+  description?: string;
 
   @Prop({ default: '1.0.0' })
   version: string
@@ -45,6 +45,7 @@ export class ModelRecord {
   @Prop({ enum: Object.values(Quantization) })
   quantization?: string
 
+  
   // Provenance (system-filled)
   @Prop({ required: true, index: true })
   ownerAddress: string
@@ -58,6 +59,7 @@ export class ModelRecord {
   @Prop({ default: '' })
   metadataCid: string
 
+
   // Lineage
   @Prop({ type: [ParentRefSubSchema], default: [] })
   baseModel: IParentRef[]
@@ -65,6 +67,7 @@ export class ModelRecord {
   @Prop({ type: TrainingDataSubSchema })
   trainingData?: ITrainingData
 
+  
   // Optional
   @Prop({ type: [String], default: [], index: true })
   tags: string[]

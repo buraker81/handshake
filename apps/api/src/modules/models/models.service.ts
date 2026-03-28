@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { ModelsRepository } from './models.repository'
-import { DomainException } from '../../common/exceptions/domain.exception'
+import { DomainException, DomainErrorCodes } from '../../common/exceptions/domain.exception'
 import type { IModel, CreateModelDTO } from '@handshake/types'
 import { ListModelsQueryDto } from './dto'
 
@@ -14,18 +14,22 @@ export class ModelsService {
 
   async listModels(filter: ListModelsQueryDto) {
     const { ...rest } = filter  
-    return this.repo.findAll(rest)
+    return await this.repo.findAll(rest)
   }
 
   async getModel(id: string): Promise<IModel> {
     const model = await this.repo.findById(id)
-    if (!model) throw new DomainException('MODEL_NOT_FOUND', 404)
+    if (!model) 
+      throw new DomainException(DomainErrorCodes.MODEL_NOT_FOUND);
+
     return model
   }
 
   async createModel(dto: CreateModelDTO, ownerAddress: string): Promise<IModel> {
     const { exists } = await this.repo.existsByHash(dto.modelHash)
-    if (exists) throw new DomainException('MODEL_DUPLICATE', 409)
+
+    if (exists) 
+      throw new DomainException(DomainErrorCodes.MODEL_DUPLICATE);
 
     // TODO: upload metadata JSON to Pinata (PinataModule — Phase 2)
     // const metadataCid = await this.pinataService.uploadMetadata({ ...dto, ownerAddress })
@@ -42,6 +46,7 @@ export class ModelsService {
     })
   }
 
+  //a prototype
   calculateProvenanceScore(model: IModel): number {
     let score = 0
 

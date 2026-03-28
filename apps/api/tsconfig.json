@@ -23,8 +23,6 @@
     }
   },
   "include": [
-    "src/**/*",
-    "../../packages/types/src/**/*",
-    "../../packages/config/src/**/*"
+    "src/**/*"
   ]
 }

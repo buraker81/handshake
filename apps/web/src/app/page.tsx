@@ -1,1 +1,3 @@
-// Home page — implementation pending
+export default function Home() {
+  return <div>hello</div>;
+}

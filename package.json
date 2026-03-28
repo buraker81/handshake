@@ -1,6 +1,7 @@
 {
-  "name": "handshake-v2",
+  "name": "handshake",
   "private": true,
+  "packageManager": "pnpm@10.0.0",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",

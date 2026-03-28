@@ -1,7 +1,7 @@
-import type { NextConfig } from 'next'
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ['@handshake/types'],
-}
+  transpilePackages: ['@handshake/types', '@handshake/config'],
+};
 
-export default nextConfig
+export default nextConfig;

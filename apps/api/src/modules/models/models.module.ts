@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { ModelsController } from './models.controller'
 import { ModelsService } from './models.service'
 import { ModelsRepository } from './models.repository'
-import { ModelRecord, ModelSchema } from '../../database/schemas/model.schema'
+import { ModelRecord, ModelSchema } from './schemas'
 
 @Module({
   imports: [
@@ -13,4 +13,5 @@ import { ModelRecord, ModelSchema } from '../../database/schemas/model.schema'
   providers: [ModelsService, ModelsRepository],
   exports: [ModelsService],
 })
+
 export class ModelsModule {}

@@ -1,14 +1,24 @@
 import { HttpException } from '@nestjs/common'
 
-const MESSAGES: Record<string, string> = {
-  MODEL_NOT_FOUND: 'Model not found',
-  MODEL_DUPLICATE: 'A model with this hash already exists',
-  UNAUTHORIZED: 'Authentication required',
-  FORBIDDEN: 'You do not own this resource',
+export const DomainErrorCodes = {
+  MODEL_NOT_FOUND: 'MODEL_NOT_FOUND',
+  MODEL_DUPLICATE: 'MODEL_DUPLICATE',
+  UNAUTHORIZED: 'UNAUTHORIZED',
+  FORBIDDEN: 'FORBIDDEN',
+} as const
+
+export type DomainErrorCode =
+  (typeof DomainErrorCodes)[keyof typeof DomainErrorCodes]
+
+const ERRORS: Record<DomainErrorCode, { message: string; status: number }> = {
+  MODEL_NOT_FOUND: { message: 'Model not found', status: 404 },
+  MODEL_DUPLICATE: { message: 'A model with this hash already exists', status: 409 },
+  UNAUTHORIZED: { message: 'Authentication required', status: 401 },
+  FORBIDDEN: { message: 'You do not own this resource', status: 403 },
 }
 
 export class DomainException extends HttpException {
-  constructor(public readonly code: string, statusCode: number) {
-    super({ code, message: MESSAGES[code] ?? code }, statusCode)
+  constructor(public readonly code: DomainErrorCode) {
+    super({ code, message: ERRORS[code].message }, ERRORS[code].status)
   }
 }

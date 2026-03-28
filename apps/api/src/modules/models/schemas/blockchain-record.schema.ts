@@ -9,10 +9,10 @@ class BlockchainRecordSub {
   blockNumber?: number
 
   @Prop()
-  contractAddress?: string
+  network?: string
 
   @Prop()
-  chainId?: number
+  contractAddress?: string
 
   @Prop()
   registeredAt?: Date

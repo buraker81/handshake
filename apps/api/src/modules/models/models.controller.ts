@@ -9,27 +9,35 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common'
-import type { Request } from 'express'
+
 import { ModelsService } from './models.service'
-import { CreateModelBodyDto, ListModelsQueryDto } from './dto'
+import { ListModelsQueryDto } from './dto'
 import { AuthGuard } from '../auth/auth.guard'
+import { Request } from 'express'
+import { CreateModelDTO } from '@handshake/types'
+
+type AuthRequest = Request & { user: {walletAddress: string } }
 
 @Controller('models')
 export class ModelsController {
   constructor(private readonly modelsService: ModelsService) { }
 
   @Get()
+  @HttpCode(HttpStatus.OK)
   listModels(@Query() query: ListModelsQueryDto) {
+    console.log(query);
     return this.modelsService.listModels({ owner: query.owner, task: query.task })
   }
 
   // Must be before :id to avoid route collision
   @Get('check/:hash')
+  @HttpCode(HttpStatus.OK)
   checkDuplicate(@Param('hash') hash: string) {
     return this.modelsService.checkDuplicate(hash)
   }
 
   @Get(':id')
+  @HttpCode(HttpStatus.OK)
   getModel(@Param('id') id: string) {
     return this.modelsService.getModel(id)
   }
@@ -37,7 +45,7 @@ export class ModelsController {
   @Post()
   @UseGuards(AuthGuard)
   @HttpCode(HttpStatus.CREATED)
-  createModel(@Body() body: CreateModelBodyDto, @Req() req: AuthRequest) {
+  createModel(@Body() body: CreateModelDTO, @Req() req: AuthRequest) {
     return this.modelsService.createModel(body, req.user.walletAddress)
   }
 }
