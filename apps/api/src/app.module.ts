@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { ModelsModule } from "./modules/models/models.module";
 import { AuthModule } from "./modules/auth/auth.module";
+import { IpfsModule } from "./modules/ipfs/ipfs.module";
 import { LoggerMiddleware } from "./common/middleware/logger.middleware";
 
 @Module({
@@ -9,6 +10,7 @@ import { LoggerMiddleware } from "./common/middleware/logger.middleware";
     MongooseModule.forRoot(process.env.MONGO_URI ?? "mongodb://localhost:27017/handshake"),
     AuthModule,
     ModelsModule,
+    IpfsModule,
   ],
 })
 export class AppModule implements NestModule {

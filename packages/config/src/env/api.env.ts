@@ -6,6 +6,8 @@ export const apiEnvSchema = z.object({
   CLIENT_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
   CHAIN_ID: z.coerce.number().default(43113), // Avalanche Fuji testnet
+  PINATA_JWT: z.string().min(1, "PINATA_JWT is required"),
+  PINATA_GATEWAY: z.string().min(1, "PINATA_GATEWAY is required"),
 });
 
 export type ApiEnv = z.infer<typeof apiEnvSchema>;

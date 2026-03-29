@@ -1,30 +1,24 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Req,
-  Res,
-  UseGuards,
-  HttpCode,
-  HttpStatus,
-} from "@nestjs/common";
+import { Controller, Get, Post, Body, Req, Res, UseGuards, HttpCode, HttpStatus } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
 import { AuthGuard } from "./auth.guard";
 import { AUTH_CONSTANTS } from "../../common/constants";
+import { GetNonceDocs, VerifyDocs, GetMeDocs, LogoutDocs } from "./auth.docs";
 
 type AuthenticatedRequest = Request & {
   cookies: Record<string, string>;
   user: { walletAddress: string };
 };
 
+@ApiTags("auth")
 @Controller("auth")
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Get("nonce")
   @HttpCode(HttpStatus.OK)
+  @GetNonceDocs()
   async getNonce() {
     const nonce = await this.authService.generateNonce();
     return { nonce };
@@ -32,6 +26,7 @@ export class AuthController {
 
   @Post("verify")
   @HttpCode(HttpStatus.OK)
+  @VerifyDocs()
   async verify(
     @Body() body: { message: string; signature: string },
     @Res({ passthrough: true }) res: Response,
@@ -51,6 +46,7 @@ export class AuthController {
   @Get("me")
   @UseGuards(AuthGuard)
   @HttpCode(HttpStatus.OK)
+  @GetMeDocs()
   getMe(@Req() req: AuthenticatedRequest) {
     return { walletAddress: req.user.walletAddress };
   }
@@ -58,6 +54,7 @@ export class AuthController {
   @Post("logout")
   @UseGuards(AuthGuard)
   @HttpCode(HttpStatus.OK)
+  @LogoutDocs()
   async logout(@Req() req: AuthenticatedRequest, @Res({ passthrough: true }) res: Response) {
     const sessionId = req.cookies[AUTH_CONSTANTS.COOKIE_NAME];
 

@@ -3,4 +3,5 @@ export const AUTH_CONSTANTS = {
   SESSION_TTL_MS: 24 * 60 * 60 * 1000, // 24 hours
   COOKIE_NAME: "sid",
   COOKIE_MAX_AGE_MS: 24 * 60 * 60 * 1000,
+  SIGNED_URL_MAX_AGE_S: 60
 } as const;

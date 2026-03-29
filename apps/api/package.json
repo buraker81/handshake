@@ -23,6 +23,7 @@
     "cookie-parser": "^1.4.6",
     "express": "^5.2.1",
     "mongoose": "^8.0.0",
+    "pinata": "^2.5.5",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.0",
     "siwe": "^2.0.0",

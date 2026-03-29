@@ -1,5 +1,6 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { ModelsRepository } from "./models.repository";
+import { IpfsService } from "../ipfs/ipfs.service";
 import { DomainException, DomainErrorCodes } from "../../common/exceptions/domain.exception";
 import type { IModel, CreateModelDTO } from "@handshake/types";
 import { ListModelsQueryDto } from "./requests/list-models-query-dto";
@@ -8,7 +9,10 @@ import { ListModelsQueryDto } from "./requests/list-models-query-dto";
 export class ModelsService {
   private readonly logger = new Logger(ModelsService.name);
 
-  constructor(private readonly repo: ModelsRepository) {}
+  constructor(
+    private readonly repo: ModelsRepository,
+    private readonly ipfsService: IpfsService,
+  ) {}
 
   async checkDuplicate(hash: string) {
     const result = await this.repo.existsByHash(hash);
@@ -43,9 +47,11 @@ export class ModelsService {
       throw new DomainException(DomainErrorCodes.MODEL_DUPLICATE);
     }
 
-    // TODO: upload metadata JSON to Pinata (PinataModule — Phase 2)
-    // const metadataCid = await this.pinataService.uploadMetadata({ ...dto, ownerAddress })
-    const metadataCid = "";
+    const metadataCid = await this.ipfsService.uploadMetadata({
+      ...dto,
+      ownerAddress,
+      createdAt: new Date().toISOString(),
+    });
 
     const model = await this.repo.create({
       ...dto,
