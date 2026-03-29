@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="21d1bb3e-d2a0-4fc7-abfe-922303fe1e40" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/apps/api/nest-cli.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/nest-cli.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/common/middleware/logger.middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/common/middleware/logger.middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/models/models.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/models/models.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/models/models.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/models/models.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/types/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/enums.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/enums.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/enums.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/types/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/model/model.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/model/model.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/model/model.types.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/model/model.types.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/types/src/model/model.types.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/auth.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/auth.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/models/models.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/models/models.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +46,12 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "feature/monorepo-structure-refactor",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "pnpm",
+    "ts.external.directory.path": "/Users/buraker/Desktop/handshake-v2/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -76,8 +69,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1774735005691</updated>
-      <workItem from="1774735007362" duration="1666000" />
+      <workItem from="1774735007362" duration="2291000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="additionalRoots">
+      <list>
+        <option value="$PROJECT_DIR$/packages/types/dist/index.d.ts" />
+      </list>
+    </option>
   </component>
 </project>

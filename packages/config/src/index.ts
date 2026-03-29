@@ -1,1 +1,2 @@
-// Shared env config — implementation pending
+export * from "./env/api.env";
+export * from "./env/web.env";

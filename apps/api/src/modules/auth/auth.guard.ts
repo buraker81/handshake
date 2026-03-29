@@ -1,15 +1,41 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common'
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  Logger,
+  UnauthorizedException,
+} from "@nestjs/common";
+import { Request } from "express";
+import { AuthService } from "./auth.service";
+import { AUTH_CONSTANTS } from "../../common/constants";
 
-// Stub — full session-based implementation lives in AuthModule (Phase 1).
-// AuthService will populate req.user = { walletAddress } via session lookup
-// before this guard runs (e.g. via middleware or a complete AuthGuard).
+type CookieRequest = Request & {
+  cookies: Record<string, string>;
+  user?: { walletAddress: string };
+};
+
 @Injectable()
 export class AuthGuard implements CanActivate {
-  canActivate(context: ExecutionContext): boolean {
-    const req = context.switchToHttp().getRequest<{ user?: { walletAddress: string } }>()
-    if (!req.user?.walletAddress) {
-      throw new UnauthorizedException('Not authenticated')
+  private readonly logger = new Logger(AuthGuard.name);
+
+  constructor(private readonly authService: AuthService) {}
+
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const req = context.switchToHttp().getRequest<CookieRequest>();
+
+    const sessionId = req.cookies?.[AUTH_CONSTANTS.COOKIE_NAME];
+    if (!sessionId) {
+      this.logger.warn(`Unauthenticated access attempt: ${req.method} ${req.path}`);
+      throw new UnauthorizedException("No session cookie");
     }
-    return true
+
+    const session = await this.authService.getSession(sessionId);
+    if (!session) {
+      this.logger.warn(`Invalid/expired session attempt: ${req.method} ${req.path}`);
+      throw new UnauthorizedException("Invalid or expired session");
+    }
+
+    req.user = { walletAddress: session.walletAddress };
+    return true;
   }
 }

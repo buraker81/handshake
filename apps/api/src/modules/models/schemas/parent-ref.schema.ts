@@ -1,25 +1,25 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Source, Relationship } from '@handshake/types'
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Source, Relationship } from "@handshake/types";
 
 @Schema({ _id: false })
 class ParentRefSub {
   @Prop({ required: true, enum: Object.values(Source) })
-  source: string
+  source: string;
 
   @Prop({ required: true })
-  name: string
+  name: string;
 
   @Prop({ required: true, enum: Object.values(Relationship) })
-  relationship: string
+  relationship: string;
 
   @Prop()
-  handshakeId?: string
+  handshakeId?: string;
 
   @Prop()
-  externalId?: string
+  externalId?: string;
 
   @Prop()
-  modelHash?: string
+  modelHash?: string;
 }
 
-export const ParentRefSubSchema = SchemaFactory.createForClass(ParentRefSub)
+export const ParentRefSubSchema = SchemaFactory.createForClass(ParentRefSub);

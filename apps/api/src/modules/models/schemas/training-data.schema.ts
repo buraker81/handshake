@@ -1,29 +1,29 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import type { IDataset } from '@handshake/types'
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import type { IDataset } from "@handshake/types";
 
 @Schema({ _id: false })
 class DatasetSub {
   @Prop({ required: true })
-  name: string
+  name: string;
 
   @Prop()
-  sourceId?: string
+  sourceId?: string;
 
   @Prop()
-  license?: string
+  license?: string;
 }
-const DatasetSubSchema = SchemaFactory.createForClass(DatasetSub)
+const DatasetSubSchema = SchemaFactory.createForClass(DatasetSub);
 
 @Schema({ _id: false })
 class TrainingDataSub {
   @Prop()
-  summary?: string
+  summary?: string;
 
   @Prop({ type: [DatasetSubSchema], default: [] })
-  datasets?: IDataset[]
+  datasets?: IDataset[];
 
   @Prop()
-  privacyMeasures?: string
+  privacyMeasures?: string;
 }
 
-export const TrainingDataSubSchema = SchemaFactory.createForClass(TrainingDataSub)
+export const TrainingDataSubSchema = SchemaFactory.createForClass(TrainingDataSub);

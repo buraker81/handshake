@@ -6,9 +6,7 @@
       "outputs": [".next/**", "dist/**"]
     },
     "check-types": {
-      "dependsOn": [
-        "^check-types"
-      ]
+      "dependsOn": ["^check-types"]
     },
     "dev": {
       "cache": false,

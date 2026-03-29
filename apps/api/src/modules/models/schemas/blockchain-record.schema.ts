@@ -1,21 +1,21 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema({ _id: false })
 class BlockchainRecordSub {
   @Prop()
-  txHash?: string
+  txHash?: string;
 
   @Prop()
-  blockNumber?: number
+  blockNumber?: number;
 
   @Prop()
-  network?: string
+  network?: string;
 
   @Prop()
-  contractAddress?: string
+  contractAddress?: string;
 
   @Prop()
-  registeredAt?: Date
+  registeredAt?: Date;
 }
 
-export const BlockchainRecordSubSchema = SchemaFactory.createForClass(BlockchainRecordSub)
+export const BlockchainRecordSubSchema = SchemaFactory.createForClass(BlockchainRecordSub);

@@ -6,6 +6,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
@@ -19,10 +20,8 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@handshake/types": ["../../packages/types/dist/index"],
-      "@handshake/config": ["../../packages/config/src"]
+      "@handshake/config": ["../../packages/config/dist/index"]
     }
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

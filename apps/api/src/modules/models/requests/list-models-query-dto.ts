@@ -1,4 +1,4 @@
 export class ListModelsQueryDto {
-    owner:  string
-    task:   string
+  owner: string;
+  task: string;
 }

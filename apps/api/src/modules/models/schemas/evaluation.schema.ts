@@ -1,29 +1,29 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import type { IBenchmark } from '@handshake/types'
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import type { IBenchmark } from "@handshake/types";
 
 @Schema({ _id: false })
 class BenchmarkSub {
   @Prop({ required: true })
-  name: string
+  name: string;
 
   @Prop()
-  score?: number
+  score?: number;
 
   @Prop()
-  metric?: string
+  metric?: string;
 
   @Prop()
-  date?: string
+  date?: string;
 }
-const BenchmarkSubSchema = SchemaFactory.createForClass(BenchmarkSub)
+const BenchmarkSubSchema = SchemaFactory.createForClass(BenchmarkSub);
 
 @Schema({ _id: false })
 class EvaluationSub {
   @Prop({ type: [BenchmarkSubSchema] })
-  benchmarks?: IBenchmark[]
+  benchmarks?: IBenchmark[];
 
   @Prop()
-  limitations?: string
+  limitations?: string;
 }
 
-export const EvaluationSubSchema = SchemaFactory.createForClass(EvaluationSub)
+export const EvaluationSubSchema = SchemaFactory.createForClass(EvaluationSub);

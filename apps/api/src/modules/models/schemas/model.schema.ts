@@ -1,13 +1,13 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Document } from 'mongoose'
-import type { IParentRef, ITrainingData, IEvaluation, IBlockchainRecord } from '@handshake/types'
-import { Task, Framework, License, Quantization } from '@handshake/types'
-import { ParentRefSubSchema } from './parent-ref.schema'
-import { TrainingDataSubSchema } from './training-data.schema'
-import { EvaluationSubSchema } from './evaluation.schema'
-import { BlockchainRecordSubSchema } from './blockchain-record.schema'
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
+import type { IParentRef, ITrainingData, IEvaluation, IBlockchainRecord } from "@handshake/types";
+import { Task, Framework, License, Quantization } from "@handshake/types";
+import { ParentRefSubSchema } from "./parent-ref.schema";
+import { TrainingDataSubSchema } from "./training-data.schema";
+import { EvaluationSubSchema } from "./evaluation.schema";
+import { BlockchainRecordSubSchema } from "./blockchain-record.schema";
 
-export type ModelDocument = ModelRecord & Document
+export type ModelDocument = ModelRecord & Document;
 
 @Schema({ timestamps: true })
 export class ModelRecord {
@@ -18,75 +18,72 @@ export class ModelRecord {
   @Prop()
   description?: string;
 
-  @Prop({ default: '1.0.0' })
-  version: string
+  @Prop({ default: "1.0.0" })
+  version: string;
 
   @Prop({ required: true, enum: Object.values(Task), index: true })
-  task: string
+  task: string;
 
   @Prop({ required: true, enum: Object.values(Framework) })
-  framework: string
+  framework: string;
 
   @Prop({ required: true, enum: Object.values(License) })
-  license: string
+  license: string;
 
   @Prop()
-  size?: number
+  size?: number;
 
   @Prop()
-  modelType?: string
+  modelType?: string;
 
   @Prop()
-  parameters?: string
+  parameters?: string;
 
   @Prop()
-  contextLength?: number
+  contextLength?: number;
 
   @Prop({ enum: Object.values(Quantization) })
-  quantization?: string
+  quantization?: string;
 
-  
   // Provenance (system-filled)
   @Prop({ required: true, index: true })
-  ownerAddress: string
+  ownerAddress: string;
 
   @Prop({ required: true, unique: true, index: true })
-  modelHash: string
+  modelHash: string;
 
   @Prop({ required: true })
-  modelFileCid: string
+  modelFileCid: string;
 
-  @Prop({ default: '' })
-  metadataCid: string
-
+  @Prop({ default: "" })
+  metadataCid: string;
 
   // Lineage
   @Prop({ type: [ParentRefSubSchema], default: [] })
-  baseModel: IParentRef[]
+  baseModel: IParentRef[];
 
   @Prop({ type: TrainingDataSubSchema })
-  trainingData?: ITrainingData
+  trainingData?: ITrainingData;
 
-  
   // Optional
   @Prop({ type: [String], default: [], index: true })
-  tags: string[]
+  tags: string[];
 
   @Prop({ type: EvaluationSubSchema })
-  evaluation?: IEvaluation
+  evaluation?: IEvaluation;
 
   @Prop({ type: [String], default: [] })
-  languages: string[]
+  languages: string[];
 
   @Prop()
-  intendedUse?: string
+  intendedUse?: string;
 
   // On-chain (Phase 3)
   @Prop({ default: false })
-  onChainRegistered: boolean
+  onChainRegistered: boolean;
 
   @Prop({ type: BlockchainRecordSubSchema })
-  blockchain?: IBlockchainRecord
+  blockchain?: IBlockchainRecord;
 }
 
-export const ModelSchema = SchemaFactory.createForClass(ModelRecord)
+export const ModelSchema = SchemaFactory.createForClass(ModelRecord);
