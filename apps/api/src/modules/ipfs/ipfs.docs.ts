@@ -1,5 +1,5 @@
 import { applyDecorators } from "@nestjs/common";
-import { ApiCookieAuth, ApiOperation, ApiResponse } from "@nestjs/swagger";
+import { ApiCookieAuth, ApiOperation, ApiQuery, ApiResponse } from "@nestjs/swagger";
 
 export const GetSignedUrlDocs = () =>
   applyDecorators(
@@ -7,8 +7,9 @@ export const GetSignedUrlDocs = () =>
     ApiOperation({
       summary: "Get a signed upload URL for IPFS",
       description:
-        "Returns a pre-signed URL valid for 60 seconds. The client uses this URL to upload the model file directly to IPFS/Pinata without routing the file through the API server. Requires authentication.",
+        "Returns a pre-signed URL valid for 1 hour. The client uses this URL to upload the model file directly to IPFS without routing it through the API server. For files >100MB, use TUS (tus-js-client with JWT header) instead — it supports resumable uploads. Requires authentication.",
     }),
+    ApiQuery({ name: "fileName", required: true, description: "The model file name including extension (e.g. llama-3-8b.safetensors)", example: "llama-3-8b.safetensors" }),
     ApiResponse({
       status: 200,
       description: "Signed URL generated",

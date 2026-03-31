@@ -47,11 +47,10 @@ export class ModelsService {
       throw new DomainException(DomainErrorCodes.MODEL_DUPLICATE);
     }
 
-    const metadataCid = await this.ipfsService.uploadMetadata({
-      ...dto,
+    const metadataCid = await this.ipfsService.uploadMetadata(
+      { ...dto, ownerAddress, createdAt: new Date().toISOString() },
       ownerAddress,
-      createdAt: new Date().toISOString(),
-    });
+    );
 
     const model = await this.repo.create({
       ...dto,
