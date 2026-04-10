@@ -9,8 +9,6 @@
     "esModuleInterop": true,
     "target": "ES2021",
     "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
@@ -18,6 +16,7 @@
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
     "paths": {
       "@handshake/types": ["../../packages/types/dist/index"],
       "@handshake/config": ["../../packages/config/dist/index"]

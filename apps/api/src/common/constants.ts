@@ -19,5 +19,6 @@ export const IPFS_CONSTANTS = {
     "application/zip",
     "application/x-zip-compressed",
     "application/x-tar",
+    "text/plain"
   ],
 } as const;

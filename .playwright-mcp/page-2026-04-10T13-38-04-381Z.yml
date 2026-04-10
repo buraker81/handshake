@@ -1,0 +1,27 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: Handshake
+        - list [ref=e12]:
+          - listitem [ref=e13]:
+            - link "Home" [ref=e14] [cursor=pointer]:
+              - /url: /
+              - img [ref=e15]
+              - generic [ref=e18]: Home
+          - listitem [ref=e19]:
+            - link "Registry" [ref=e20] [cursor=pointer]:
+              - /url: /registry
+              - img [ref=e21]
+              - generic [ref=e26]: Registry
+        - button "Toggle Sidebar" [ref=e27]
+      - main [ref=e28]:
+        - generic [ref=e29]:
+          - button "Toggle Sidebar" [ref=e30]:
+            - img
+            - generic [ref=e31]: Toggle Sidebar
+          - generic:
+            - button [disabled]: Connect Wallet
+    - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e45] [cursor=pointer]:
+    - img [ref=e46]
