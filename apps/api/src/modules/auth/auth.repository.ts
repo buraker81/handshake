@@ -1,8 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { NonceRecord, NonceDocument } from "./schemas/nonce.schema";
-import { SessionRecord, SessionDocument } from "./schemas/session.schema";
+import type { Model } from "mongoose";
+import type { NonceDocument } from "./schemas/nonce.schema";
+import { NonceRecord } from "./schemas/nonce.schema";
+import type { SessionDocument } from "./schemas/session.schema";
+import { SessionRecord } from "./schemas/session.schema";
 
 @Injectable()
 export class AuthRepository {

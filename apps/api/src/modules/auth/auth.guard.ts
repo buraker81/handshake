@@ -1,12 +1,13 @@
-import {
+import type {
   CanActivate,
-  ExecutionContext,
+  ExecutionContext} from "@nestjs/common";
+import {
   Injectable,
   Logger,
   UnauthorizedException,
 } from "@nestjs/common";
-import { Request } from "express";
-import { AuthService } from "./auth.service";
+import type { Request } from "express";
+import type { AuthService } from "./auth.service";
 import { AUTH_CONSTANTS } from "../../common/constants";
 
 type CookieRequest = Request & {

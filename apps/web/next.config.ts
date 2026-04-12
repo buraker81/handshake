@@ -7,14 +7,23 @@ const nextConfig: NextConfig = {
   webpack: (config) => {
     // @wagmi/connectors resolves @base-org/account with 'node' condition → index.node.js
     // which imports from ox with ESM exports webpack can't analyze.
-    // Force browser entry to avoid the broken node build.
+    // Force browser entry (dist/index.js) to avoid the broken node build.
+    // @base-org/account is hoisted via .npmrc public-hoist-pattern so this path is stable.
     config.resolve.alias = {
       ...config.resolve.alias,
       "@base-org/account": path.resolve(
         __dirname,
-        "../../node_modules/.pnpm/@base-org+account@2.4.0_@types+react@19.2.14_bufferutil@4.1.0_react@19.2.4_typescript@5_7fcec0002321393155f030f08ff64057/node_modules/@base-org/account/dist/index.js"
+        "../../node_modules/@base-org/account/dist/index.js"
       ),
     };
+
+    // Suppress warnings for optional native/RN packages not used in browser context.
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      "@react-native-async-storage/async-storage": false,
+      "pino-pretty": false,
+    };
+
     return config;
   },
 };

@@ -1,7 +1,7 @@
 import { Controller, Get, HttpCode, HttpStatus, Query, Req, UseGuards } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { Request } from "express";
-import { IpfsService } from "./ipfs.service";
+import type { Request } from "express";
+import type { IpfsService } from "./ipfs.service";
 import { AuthGuard } from "../auth/auth.guard";
 import { GetSignedUrlDocs } from "./ipfs.docs";
 

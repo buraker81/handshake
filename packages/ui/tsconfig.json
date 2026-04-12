@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "target": "ES2021"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

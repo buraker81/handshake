@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { useEffect, useRef } from "react"
@@ -25,54 +26,34 @@ export function ShaderAnimation() {
   })
 
   useEffect(() => {
-    const script = document.createElement("script")
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"
-    script.onload = () => {
-      if (containerRef.current && window.THREE) {
-        initThreeJS()
+    const currentSceneRef = sceneRef
+
+    function initThreeJS() {
+      if (!containerRef.current || !window.THREE) return
+
+      const THREE = window.THREE
+      const container = containerRef.current
+
+      container.innerHTML = ""
+
+      const camera = new THREE.Camera()
+      camera.position.z = 1
+
+      const scene = new THREE.Scene()
+      const geometry = new THREE.PlaneBufferGeometry(2, 2)
+
+      const uniforms = {
+        time: { type: "f", value: 1.0 },
+        resolution: { type: "v2", value: new THREE.Vector2() },
       }
-    }
-    document.head.appendChild(script)
 
-    return () => {
-      if (sceneRef.current.animationId) {
-        cancelAnimationFrame(sceneRef.current.animationId)
-      }
-      if (sceneRef.current.renderer) {
-        sceneRef.current.renderer.dispose()
-      }
-      if (document.head.contains(script)) {
-        document.head.removeChild(script)
-      }
-    }
-  }, [])
-
-  const initThreeJS = () => {
-    if (!containerRef.current || !window.THREE) return
-
-    const THREE = window.THREE
-    const container = containerRef.current
-
-    container.innerHTML = ""
-
-    const camera = new THREE.Camera()
-    camera.position.z = 1
-
-    const scene = new THREE.Scene()
-    const geometry = new THREE.PlaneBufferGeometry(2, 2)
-
-    const uniforms = {
-      time: { type: "f", value: 1.0 },
-      resolution: { type: "v2", value: new THREE.Vector2() },
-    }
-
-    const vertexShader = `
+      const vertexShader = `
       void main() {
         gl_Position = vec4( position, 1.0 );
       }
     `
 
-    const fragmentShader = `
+      const fragmentShader = `
       #define TWO_PI 6.2831853072
       #define PI 3.14159265359
 
@@ -113,45 +94,67 @@ export function ShaderAnimation() {
       }
     `
 
-    const material = new THREE.ShaderMaterial({
-      uniforms: uniforms,
-      vertexShader: vertexShader,
-      fragmentShader: fragmentShader,
-    })
+      const material = new THREE.ShaderMaterial({
+        uniforms: uniforms,
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader,
+      })
 
-    const mesh = new THREE.Mesh(geometry, material)
-    scene.add(mesh)
+      const mesh = new THREE.Mesh(geometry, material)
+      scene.add(mesh)
 
-    const renderer = new THREE.WebGLRenderer()
-    renderer.setPixelRatio(window.devicePixelRatio)
-    container.appendChild(renderer.domElement)
+      const renderer = new THREE.WebGLRenderer()
+      renderer.setPixelRatio(window.devicePixelRatio)
+      container.appendChild(renderer.domElement)
 
-    sceneRef.current = {
-      camera,
-      scene,
-      renderer,
-      uniforms,
-      animationId: null,
+      currentSceneRef.current = {
+        camera,
+        scene,
+        renderer,
+        uniforms,
+        animationId: null,
+      }
+
+      const onWindowResize = () => {
+        const rect = container.getBoundingClientRect()
+        renderer.setSize(rect.width, rect.height)
+        uniforms.resolution.value.x = renderer.domElement.width
+        uniforms.resolution.value.y = renderer.domElement.height
+      }
+
+      onWindowResize()
+      window.addEventListener("resize", onWindowResize, false)
+
+      const animate = () => {
+        currentSceneRef.current.animationId = requestAnimationFrame(animate)
+        uniforms.time.value += 0.02
+        renderer.render(scene, camera)
+      }
+
+      animate()
     }
 
-    const onWindowResize = () => {
-      const rect = container.getBoundingClientRect()
-      renderer.setSize(rect.width, rect.height)
-      uniforms.resolution.value.x = renderer.domElement.width
-      uniforms.resolution.value.y = renderer.domElement.height
+    const script = document.createElement("script")
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"
+    script.onload = () => {
+      if (containerRef.current && window.THREE) {
+        initThreeJS()
+      }
     }
+    document.head.appendChild(script)
 
-    onWindowResize()
-    window.addEventListener("resize", onWindowResize, false)
-
-    const animate = () => {
-      sceneRef.current.animationId = requestAnimationFrame(animate)
-      uniforms.time.value += 0.02
-      renderer.render(scene, camera)
+    return () => {
+      if (currentSceneRef.current.animationId) {
+        cancelAnimationFrame(currentSceneRef.current.animationId)
+      }
+      if (currentSceneRef.current.renderer) {
+        currentSceneRef.current.renderer.dispose()
+      }
+      if (document.head.contains(script)) {
+        document.head.removeChild(script)
+      }
     }
-
-    animate()
-  }
+  }, [])
 
   return (
     <div

@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import type { Document } from "mongoose";
 import type { IParentRef, ITrainingData, IEvaluation, IBlockchainRecord } from "@handshake/types";
 import { Task, Framework, License, Quantization } from "@handshake/types";
 import { ParentRefSubSchema } from "./parent-ref.schema";

@@ -1,9 +1,9 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { ModelsRepository } from "./models.repository";
-import { IpfsService } from "../ipfs/ipfs.service";
+import type { ModelsRepository } from "./models.repository";
+import type { IpfsService } from "../ipfs/ipfs.service";
 import { DomainException, DomainErrorCodes } from "../../common/exceptions/domain.exception";
 import type { IModel, CreateModelDTO } from "@handshake/types";
-import { ListModelsQueryDto } from "./requests/list-models-query-dto";
+import type { ListModelsQueryDto } from "./requests/list-models-query-dto";
 
 @Injectable()
 export class ModelsService {

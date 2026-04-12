@@ -2,28 +2,24 @@
   "name": "handshake",
   "private": true,
   "packageManager": "pnpm@10.0.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "lint": "turbo lint",
+    "lint": "turbo lint --filter=\"*\"",
+    "check-types": "turbo check-types --filter=\"*\"",
     "format": "prettier --write \"**/*.{ts,tsx,json}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,json}\"",
-    "test": "turbo test"
+    "test": "turbo test",
+    "clean": "turbo clean; find . -name 'dist' -type d -not -path '*/node_modules/*' | xargs rm -rf; find . -name '.turbo' -type d -not -path '*/node_modules/*' | xargs rm -rf"
   },
   "devDependencies": {
+    "eslint": "^10.1.0",
     "prettier": "^3.8.1",
     "turbo": "^2.8.21",
     "typescript": "^5.0.0"
   },
   "engines": {
     "node": ">=20.0.0",
-    "pnpm": ">=9.0.0"
-  },
-  "dependencies": {
-    "eslint": "^10.1.0"
+    "pnpm": ">=10.0.0"
   }
 }

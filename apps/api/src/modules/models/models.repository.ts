@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { ModelRecord, ModelDocument } from "./schemas";
+import type { Model } from "mongoose";
+import type { ModelDocument } from "./schemas";
+import { ModelRecord } from "./schemas";
 import type { IModel } from "@handshake/types";
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { PinataAdapter } from "./adapters/pinata.adapter";
+import type { PinataAdapter } from "./adapters/pinata.adapter";
 
 export interface SignedUrlOptions {
   fileName: string;

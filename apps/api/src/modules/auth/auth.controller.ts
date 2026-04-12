@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Req, Res, UseGuards, HttpCode, HttpStatus } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { Request, Response } from "express";
-import { AuthService } from "./auth.service";
+import type { Request, Response } from "express";
+import type { AuthService } from "./auth.service";
 import { AuthGuard } from "./auth.guard";
 import { AUTH_CONSTANTS } from "../../common/constants";
 import { GetNonceDocs, VerifyDocs, GetMeDocs, LogoutDocs } from "./auth.docs";

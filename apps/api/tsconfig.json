@@ -18,8 +18,8 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@handshake/types": ["../../packages/types/dist/index"],
-      "@handshake/config": ["../../packages/config/dist/index"]
+      "@handshake/types": ["../../packages/types/src/index.ts"],
+      "@handshake/config": ["../../packages/config/src/index.ts"]
     }
   },
   "include": ["src/**/*"]
