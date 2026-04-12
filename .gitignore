@@ -10,3 +10,4 @@ dist
 .agents
 .idea
 CLAUDE.md
+.playwright-mcp
