@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Req, Res, UseGuards, HttpCode, HttpStatus } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import type { Request, Response } from "express";
-import type { AuthService } from "./auth.service";
+import { AuthService } from "./auth.service";
 import { AuthGuard } from "./auth.guard";
-import { AUTH_CONSTANTS } from "../../common/constants";
+import { AUTH_CONSTANTS } from "@api/common/constants";
 import { GetNonceDocs, VerifyDocs, GetMeDocs, LogoutDocs } from "./auth.docs";
 
 type AuthenticatedRequest = Request & {

@@ -7,8 +7,8 @@ import {
   UnauthorizedException,
 } from "@nestjs/common";
 import type { Request } from "express";
-import type { AuthService } from "./auth.service";
-import { AUTH_CONSTANTS } from "../../common/constants";
+import { AuthService } from "./auth.service";
+import { AUTH_CONSTANTS } from "@api/common/constants";
 
 type CookieRequest = Request & {
   cookies: Record<string, string>;

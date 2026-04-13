@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable, Logger, UnauthorizedException } from "@nestjs/common";
 import { SiweMessage, generateNonce } from "siwe";
 import { v4 as uuidv4 } from "uuid";
-import type { AuthRepository } from "./auth.repository";
-import { AUTH_CONSTANTS } from "../../common/constants";
+import { AuthRepository } from "./auth.repository";
+import { AUTH_CONSTANTS } from "@api/common/constants";
 
 @Injectable()
 export class AuthService {

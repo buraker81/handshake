@@ -1,12 +1,12 @@
 import { Controller, Get, Post, Param, Body, Query, Req, UseGuards, HttpCode, HttpStatus } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import type { ModelsService } from "./models.service";
+import { ModelsService } from "./models.service";
 import type { ListModelsQueryDto } from "./requests/list-models-query-dto";
 import { AuthGuard } from "../auth/auth.guard";
 import type { Request } from "express";
 import type { CreateModelDTO} from "@handshake/types";
 import { CreateModelSchema } from "@handshake/types";
-import { ValidationPipe } from "../../common/pipes/zod-validation.pipe";
+import { ValidationPipe } from "@api/common/pipes/zod-validation.pipe";
 import { ListModelsDocs, CheckDuplicateDocs, GetModelDocs, CreateModelDocs } from "./models.docs";
 
 type AuthRequest = Request & { user: { walletAddress: string } };

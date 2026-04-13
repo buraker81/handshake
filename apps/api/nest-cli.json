@@ -3,7 +3,17 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "builder": "swc",
+    "builder": {
+      "type": "swc",
+      "options": {
+        "jsc": {
+          "baseUrl": ".",
+          "paths": {
+            "@api/*": ["src/*"]
+          }
+        }
+      }
+    },
     "deleteOutDir": false
   }
 }

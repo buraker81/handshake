@@ -8,14 +8,16 @@ import { ThemeProvider } from "next-themes"
 import { Toaster } from "@/components/ui/sonner"
 import { AuthProvider } from "@/contexts/AuthContext"
 import { wagmiConfig } from "@/lib/wagmi"
+import type { State } from "wagmi"
 
 import "@rainbow-me/rainbowkit/styles.css"
 
 interface ProvidersProps {
   children: React.ReactNode
+  initialState?: State
 }
 
-export function Providers({ children }: ProvidersProps) {
+export function Providers({ children, initialState }: ProvidersProps) {
   const [queryClient] = React.useState(
     () =>
       new QueryClient({
@@ -28,7 +30,7 @@ export function Providers({ children }: ProvidersProps) {
   )
 
   return (
-    <WagmiProvider config={wagmiConfig}>
+    <WagmiProvider config={wagmiConfig} initialState={initialState}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
           <ThemeProvider

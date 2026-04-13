@@ -1,8 +1,8 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { PinataSDK } from "pinata";
 import type { IStorageProvider, SignedUrlOptions } from "../ipfs.service";
-import { DomainException, DomainErrorCodes } from "../../../common/exceptions/domain.exception";
-import { IPFS_CONSTANTS } from "../../../common/constants";
+import { DomainException, DomainErrorCodes } from "@api/common/exceptions/domain.exception";
+import { IPFS_CONSTANTS } from "@api/common/constants";
 
 @Injectable()
 export class PinataAdapter implements IStorageProvider {
