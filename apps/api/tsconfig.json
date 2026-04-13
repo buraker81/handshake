@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "moduleResolution": "node",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -18,9 +19,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@api/*": ["src/*"],
-      "@handshake/types": ["../../packages/types/dist/index"],
-      "@handshake/config": ["../../packages/config/dist/index"]
+      "@api/*": ["src/*"]
     }
   },
   "include": ["src/**/*"]
